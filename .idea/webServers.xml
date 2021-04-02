@@ -5,7 +5,7 @@
       <webServer id="aa00272b-144f-43b3-a6a9-f6f753fef19b" name="papeo.org" url="http://www.papeo.org">
         <fileTransfer host="www.papeo.org" port="21">
           <advancedOptions>
-            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" showHiddenFiles="true" />
           </advancedOptions>
         </fileTransfer>
       </webServer>

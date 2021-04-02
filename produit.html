@@ -1,27 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 <style>
-    textarea {
-        white-space: normal;
-        text-align: justify;
-        -moz-text-align-last: center; /* Firefox 12+ */
-        text-align-last: center;
+    html {
+        padding:10px;
     }
+    textarea {
+        padding:10px;
+        margin-right: 10px;
+        text-align: center;
+    }
+
 </style>
+    <title>Calcul tarifs Exa</title>
+</head>
+<body>
 
-<h1>Formulaire d'affichage des prix</h1>
-
-<form action="json.php" name="calculPrix" method="post">
-    <label>Saisissez les quantités</label>
-    <textarea id="textarea" cols="10" rows ="20" name="quantite">100
-        200
-        300
-     </textarea>
-    <label>Saisissez la liste des colonnes</label>
-    <textarea id="colonne" cols="10" rows ="20" name="colonne">
-
-     </textarea>
-
-    <input type="submit" value="textarea" class="submitButton">
+<h2>Calcul tarif Exa</h2>
 
 
+    <form action="json.php" name="calculPrix" method="post">
+       <p></p> <label>Saissisez l'adresse Exa</label>
+        </p>
+        <p><div>
+        <input type="text" id="url" name="url" required size="100">
+        </div></p>
+        <br>
+        <table width="200" border="0">
+        <tbody>
+        <tr>
+            <td>&nbsp;Saisie Quantité</td>
+            <td>&nbsp;Saisie champ</td>
+        </tr>
+        <tr>
+            <td><textarea id="quantite" cols="10" rows ="20" name="quantite">
+     </textarea></td>
+            <td><textarea id="colonne" cols="10" rows ="20" name="colonne">
 
-</form>
+     </textarea></td>
+        </tr>
+
+        </tbody>
+
+
+
+</table>
+<br>
+
+
+        <input type="radio" id="-25%" name="remise" value="0.75" checked>
+        <label for="Carterie">Carterie -25%</label><br>
+        <input type="radio" id="-20%" name="remise" value="0.78">
+        <label for="Amalgame">Amalgame -20%</label><br>
+        <input type="radio" id="-16%" name="remise" value="0.84">
+        <label for="Reste">Reste -16%</label>
+        <br>------------<br>
+        <input type="radio" id="2935" name="variable" value="2935" checked>
+        <label for="variable">2935</label><br>
+        <input type="radio" id="2936" name="variable" value="2936">
+        <label for="variable">2936</label><br>
+
+        <p><br><button type="submit" class="btn btn-primary">Calcul Grille Exa</button></p>
+    </form>
+
+</body>
+
+
+</html>
+
+

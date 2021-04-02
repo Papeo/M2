@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<order>
+    <ref_order>reference_interne</ref_order>
+    <id_utilisateur>218832726</id_utilisateur>
+    <id_boutique>16</id_boutique>
+    <ref_order_realisaprint>8889</ref_order_realisaprint>
+    <product>
+        <tracking_number>X8889</tracking_number>
+        <tracking_link>www.transporteur.com/tracking/8889</tracking_link>
+        <statut>17</statut>
+        <libelle_statut>en cours de verification</libelle_statut>
+        <date>2020-07-16 10:35:10</date>
+    </product>
+</order>

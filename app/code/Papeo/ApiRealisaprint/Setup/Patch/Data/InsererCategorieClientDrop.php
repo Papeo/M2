@@ -9,11 +9,9 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Customer\Model\Customer;
 use Magento\Eav\Model\Config;
-use Magento\Customer\Model\ResourceModel\CustomerRepository;
-use Magento\Framework\Api\SearchCriteriaBuilder;
 
 
-class InsererCategorieClientDrop implements DataPatchInterface
+class InsererCategorieClient implements DataPatchInterface
 {
     /**
      * @var ModuleDataSetupInterface
@@ -31,17 +29,13 @@ class InsererCategorieClientDrop implements DataPatchInterface
 
         CustomerSetupFactory $customerSetupFactory,
         ModuleDataSetupInterface $moduleDataSetup,
-        Config $eavModelConfig,
-        CustomerRepository $customerRepository,
-        SearchCriteriaBuilder $searchCriteriaBuilder
+        Config $eavModelConfig
     )
 
     {
         $this->_customerSetupFactory = $customerSetupFactory;
         $this->_moduleDataSetup = $moduleDataSetup;
         $this->_eavModelConfig = $eavModelConfig;
-        $this->_customerRepository = $customerRepository;
-        $this->_searchCriteriaBuilder = $searchCriteriaBuilder;
 
 
     }
@@ -60,25 +54,22 @@ class InsererCategorieClientDrop implements DataPatchInterface
     public function apply()
     {
         $customerSetup = $this->_customerSetupFactory->create(["setup" => $this->_moduleDataSetup]);
-        $customerSetup->addAttribute(\Magento\Customer\Model\Customer::ENTITY, 'custom_dropdown',
+        $customerSetup->addAttribute(Customer::ENTITY, "Categorie_client",
             //Attribue Options
 
             [
-           'label' => 'Custom Dropdown',
-            'system' => 0,
-            'position' => 710,
-            'sort_order' => 710,
-            'visible' => true,
-            'note' => '',
-            'type' => 'int',
-            'input' => 'select',
-            'source' => 'Papeo\ApiRealisaprint\Model\Customdropdown',
-                'default' => 0
-
+                'type' => 'varchar',
+                'label' => 'Categorie_client',
+                'input' => 'text',
+                'required' => false,
+                'visible' => true,
+                'user_defined' => true,
+                'position' => 999,
+                'system' => 0,
+                'default' => "toto"
             ]);
 
-
-           $customerAttribute = $this->_eavModelConfig->getAttribute(Customer::ENTITY, "custom_dropdown");
+        $customerAttribute = $this->_eavModelConfig->getAttribute(Customer::ENTITY, "Categorie_client");
 
              $customerAttribute->addData([
             'attribute_set_id' => 1,
@@ -86,24 +77,14 @@ class InsererCategorieClientDrop implements DataPatchInterface
             'used_in_forms' => ['adminhtml_customer'],
         ]);
 
-
+        //$customerSetup->setData("Categorie_client", "toto");
         $customerAttribute->save();
-        //je souhaite assigner la valeur 3 à tous les clients
-
-        $customers = $this->_customerRepository->getList($this->_searchCriteriaBuilder->create());
-        foreach ($customers->getItems() as $customer) {
-            $customer =
-            //calcul CA
-            $customer->setData("custom_dropdown",3);
-            $customer->save();
-
     }
 
 
+    // je souhaite initialiser la valeur de catégorie client, pour tous les clients.
 
-    }
-
-
+    // $customers = $this->_customerRepostory->getList();
 
 
 }

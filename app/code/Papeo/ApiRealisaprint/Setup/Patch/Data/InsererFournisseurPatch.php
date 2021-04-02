@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Papeo\ApiRealisaprint\Setup\Patch\Data;
+namespace Papeo\Setup\Patch\Data;
 
 
 use Magento\Framework\Setup\Patch\DataPatchInterface;
@@ -17,7 +17,7 @@ class InsererFournisseurPatch implements DataPatchInterface
     public function __construct(
 
         \Papeo\ApiRealisaprint\Model\FournisseurFactory $fournisseurFactory,
-        \Papeo\ApiRealisaprint\Model\ResourceModel\Fournisseur $fournisseurResourceModel)
+        \Papeo\Formation2\Model\ResourceModel\ApiRealisaprint\Fournisseur $fournisseurResourceModel)
 
 {
     $this->_fournisseurFactory = $fournisseurFactory;
