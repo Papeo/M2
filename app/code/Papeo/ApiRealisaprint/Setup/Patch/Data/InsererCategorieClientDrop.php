@@ -81,7 +81,7 @@ class InsererCategorieClient implements DataPatchInterface
         $customerAttribute->save();
     }
 
-
+echo "hello3";
     // je souhaite initialiser la valeur de catégorie client, pour tous les clients.
 
     // $customers = $this->_customerRepostory->getList();
