@@ -3,6 +3,11 @@
 
 namespace Papeo\ApiRealisaprint\Helper;
 
+use Magento\Sales\Model\Order\ItemRepository;
+use Magento\Backend\Model\Auth\Session;
+
+
+
 
 class ApiExpedition
 {
@@ -37,36 +42,52 @@ class ApiExpedition
         \Magento\Sales\Model\Order\Shipment\TrackFactory $shipmentTrackFactory,
         \Magento\Sales\Model\Order\ShipmentFactory $shipmentFactory,
         \Magento\Framework\DB\TransactionFactory $transactionFactory,
-        \Magento\Sales\Api\OrderRepositoryInterface $orderRepository
-    ) {
+        \Magento\Sales\Api\OrderRepositoryInterface $orderRepository,
+        ItemRepository $itemRepository,
+        \Magento\Backend\Model\Auth\Session $autSession,
+        \Magento\Sales\Model\Order\Shipment\NotifierInterface $notierEmail)
+    {
         $this->_shipmentTrackFactory = $shipmentTrackFactory;
         $this->_shipmentFactory = $shipmentFactory;
         $this->_transactionFactory = $transactionFactory;
         $this->_orderRepository = $orderRepository;
+        $this->_itemRepository = $itemRepository;
+        $this->_autSession = $autSession;
+        $this->_notierEmail = $notierEmail;
     }
 
     /**
-     * @param int $orderId
+     * @param \Magento\Sales\Model\Order\Item\ $idItem
      * @param string $trackingNumber
      * @return \Magento\Sales\Model\Shipment $shipment
      */
-    public function createShipment($orderId, $trackingNumber)
+    public function createShipment(\Magento\Sales\Model\Order\Item $item, $trackingNumber, $nomTransporteur)
+
     {
+
         try {
-            $order = $this->_orderRepository->get($orderId);
-            if ($order){
+
+            $order = $item->getOrder();
+
+            if ($order) {
                 $data = array(array(
                     'carrier_code' => $order->getShippingMethod(),
-                    'title' => $order->getShippingDescription(),
+                    'title' => $nomTransporteur,
                     'number' => $trackingNumber,
+
                 ));
-                $shipment = $this->prepareShipment($order, $data);
+                $shipment = $this->prepareShipment($order, $data, $item);
+
+
                 if ($shipment) {
                     $order->setIsInProcess(true);
-                    $order->addStatusHistoryComment('Automatically SHIPPED', false);
-                    $transactionSave =  $this->_transactionFactory->create()->addObject($shipment)->addObject($shipment->getOrder());
+              //     $order->addStatusHistoryComment('Automatically Envoyé Item'.$item->getName()."par ". $this->_autSession->getUser()->getName(), false);
+                    $transactionSave = $this->_transactionFactory->create()->addObject($shipment)->addObject($shipment->getOrder());
                     $transactionSave->save();
+                    $this->_notierEmail->notify($order,$shipment);
                 }
+                //echo "l item est ". $item->getItemId();
+                //exit("yy");
                 return $shipment;
             }
         } catch (\Exception $e) {
@@ -81,13 +102,13 @@ class ApiExpedition
      * @param $track array
      * @return $this
      */
-    public function prepareShipment($order, $track)
+    public function prepareShipment($order, $track, \Magento\Sales\Model\Order\Item $item)
     {
-        $shipment = $this->_shipmentFactory->create(
-            $order,
-            $this->prepareShipmentItems($order),
-            $track
-        );
+
+        $articleAExpedier = [];
+        $articleAExpedier[$item->getId()] = $item->getQtyOrdered();
+
+        $shipment = $this->_shipmentFactory->create($order,$articleAExpedier,$track);
         return $shipment->getTotalQty() ? $shipment->register() : false;
     }
 
@@ -95,13 +116,5 @@ class ApiExpedition
      * @param $order \Magento\Sales\Model\Order
      * @return array
      */
-    public function prepareShipmentItems($order)
-    {
-        $items = [];
 
-        foreach($order->getAllItems() as $item) {
-            $items[$item->getItemId()] = $item->getQtyOrdered();
-        }
-        return $items;
-    }
 }

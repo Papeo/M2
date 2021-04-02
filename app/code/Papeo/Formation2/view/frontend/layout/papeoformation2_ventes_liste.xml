@@ -12,7 +12,7 @@
     <body>
         <referenceContainer name="content">
             <!-- c'est la qu'on détermine le chemin de la classe -->
-            <block class="Papeo\Formation2\Block\Ventes\ListeVentes" name="texte-ventes" template="Papeo_Formation2::texte-ventes.phtml" cacheable="false">
+            <block class="Papeo\Formation2\Block\Ventes\Liste" name="texte-ventes" template="Papeo_Formation2::texte-ventes.phtml" cacheable="false">
             </block>
             </referenceContainer>
     </body>

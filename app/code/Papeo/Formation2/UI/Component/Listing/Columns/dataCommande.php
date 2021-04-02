@@ -13,7 +13,7 @@ use Papeo\Formation2\Model\CadeauRepository;
 use Magento\Customer\Model\ResourceModel\CustomerRepository;
 use Magento\Ui\Component\Listing\Columns\Column;
 
-class NomDuClientColumn extends \Magento\Ui\Component\Listing\Columns\Column
+class dataCommande extends \Magento\Ui\Component\Listing\Columns\Column
 {
 
     /**
@@ -61,19 +61,13 @@ class NomDuClientColumn extends \Magento\Ui\Component\Listing\Columns\Column
             foreach ($dataSource['data']['items'] as & $item) {
 
 
-                 $customer = $this->_customerRepository->getById($item["customer_id"]);
+                if (!empty($custom_id)) {
+                    $orderData = $this->_orderCollectionFactory->create();
+
+                }
 
 
-              //  $item[$this->getData('name')] = $customer->getFirstname();
-
-                $item['name'] = $customer->getFirstname();
-
-                $customerOrder = $this->_orderCollectionFactory->create()->addFieldToFilter('customer_id', $item['customer_id']);
-                $item[$this->getData('name')] = count($customerOrder);//Value which you want to display
-
-                $total = $this->_orderRepository->get($item['customer_id']);
-                $item['total']  =$total->getBaseGrandTotal();
-
+                $item['tvaclient'] = $orderData->getTotalCount();
 //                //recup CA Total
 //                $ca = $this->_orderRepository->get($item['customer_id']);
 //                $item['ca']  =$total->getItems($item['customer_id']);

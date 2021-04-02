@@ -6,8 +6,10 @@ namespace Papeo\ApiRealisaprint\Setup\Patch\Data;
 
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\Patch\PatchInterface;
+use \Papeo\ApiRealisaprint\Model\ResourceModel\Fournisseur;
 
-class InsererFournisseurPatch implements DataPatchInterface
+
+class RenommerFournisseurExaprint implements DataPatchInterface
 {
 
 
@@ -17,18 +19,24 @@ class InsererFournisseurPatch implements DataPatchInterface
     public function __construct(
 
         \Papeo\ApiRealisaprint\Model\FournisseurFactory $fournisseurFactory,
-        \Papeo\ApiRealisaprint\Model\ResourceModel\Fournisseur $fournisseurResourceModel)
+        \Papeo\ApiRealisaprint\Model\ResourceModel\Fournisseur $fournisseurResourceModel,
+        \Papeo\ApiRealisaprint\Model\ResourceModel\Fournisseur\CollectionFactory $fournisseurCollectionFactory)
 
 {
     $this->_fournisseurFactory = $fournisseurFactory;
     $this->_fournisseurResourceModel = $fournisseurResourceModel;
+    $this->_fournisseurCollectionFactory = $fournisseurCollectionFactory;
 }
 
 
 
     public static function getDependencies()
     {
-        return [];
+        return [
+
+            InsererFournisseurPatch::class
+
+        ];
     }
 
     public function getAliases()
@@ -38,11 +46,20 @@ class InsererFournisseurPatch implements DataPatchInterface
 
     public function apply()
     {
-        //on insère un fournisseur dans la table papeo_fournisseur
-        $fournisseur = $this->_fournisseurFactory->create();
-        $fournisseur->setData("code_fournisseur", "EXA");
-        $fournisseur->setData("libelle_fournisseur", "Exaprint");
 
-        $this->_fournisseurResourceModel->save($fournisseur);
+        /** @var   \Papeo\ApiRealisaprint\Model\ResourceModel\Fournisseur\Collection $fournisseurs */
+
+        $fournisseurs = $this->_fournisseurCollectionFactory->create();
+
+        $fournisseurs->addFieldToFilter("code_fournisseur", "EXA");
+
+        if($fournisseurs->count() ==1) {
+
+            $fournisseur = $fournisseurs->getFirstItem();
+            $fournisseur->setData("code_fournisseur", "EXA2");
+            $this->_fournisseurResourceModel->save($fournisseur);
+        }
+
+
     }
 }

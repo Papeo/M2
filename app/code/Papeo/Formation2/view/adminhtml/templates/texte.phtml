@@ -12,7 +12,7 @@ $clients = $block->getMesClients();
  */
 
 ?>
-<form method="post" action="http://www.papeo.org/papeoformation2/cadeau/AddCadeau/">
+<form method="post" action="<?php echo $block->getUrl("*/*/AddCadeau"); ?>">
     <input type="text" name="nom_cadeau" id="nom_cadeau">
     <select name="customer_id" id="customer_id">
         <?php

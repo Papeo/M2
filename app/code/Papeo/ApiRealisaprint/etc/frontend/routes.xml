@@ -8,9 +8,11 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <!-- souvent standard ou admin */-->
     <router id="standard">
-        <route id="papeoapirealisaprint" frontName="papeoapirealisaprint">
+        <route id="apirealisaprint" frontName="apirealisaprint">
             <module name="Papeo_ApiRealisaprint" />
         </route>
     </router>
 </config>
+
+
 

@@ -1,17 +1,17 @@
 <?php
 
 
-namespace Papeo\Formation2\Model\ResourceModel\Cadeau;
+namespace Papeo\Formation2\Model\ResourceModel\Ventes;
 
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 use Papeo\Formation2\Model\Cadeau;
 
-class Collection extends AbstractCollection
+class Collection2 extends AbstractCollection
 {
     public function _construct()
     {
-        $this->_init(Cadeau::class,\Papeo\Formation2\Model\ResourceModel\Cadeau::class);
+        $this->_init(Ventes::class,\Papeo\Formation2\Model\ResourceModel\Ventes::class);
     }
 
 }

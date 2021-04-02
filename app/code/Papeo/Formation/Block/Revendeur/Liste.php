@@ -149,8 +149,12 @@ class Liste extends Template
 
         //criteria;
         $mesproduits = $this->_productRepository->getList($searchCriteria);
-        //var_dump($mesproduits->getCollection());
+     //   var_dump($mesproduits->setItems(""));
        // die;
+
+        //var_dump(get_class($mesproduits));
+
+
         return $mesproduits->getItems();
 
 

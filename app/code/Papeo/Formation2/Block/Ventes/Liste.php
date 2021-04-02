@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Papeo\Formation2\Block\Cadeau;
+namespace Papeo\Formation2\Block\Ventes;
 
 
 
 use Magento\Framework\View\Element\Template;
 use Magento\Customer\Model\ResourceModel\Customer\CollectionFactory;
-use Papeo\Formation2\Model\ResourceModel\Cadeau;
+use Papeo\Formation2\Model\ResourceModel\Ventes;
 use Magento\Sales\Model\OrderRepository;
 
 class Liste extends Template
@@ -17,9 +17,9 @@ class Liste extends Template
      */
     private CollectionFactory $_customerCollectionFactory;
     /**
-     * @var \Papeo\Formation2\Model\ResourceModel\Cadeau\CollectionFactory
+     * @var \Papeo\Formation2\Model\ResourceModel\Ventes\CollectionFactory
      */
-    private $_cadeauCollectionFactory;
+    private $_ventesCollectionFactory;
     /**
      * @var OrderRepository
      */
@@ -27,7 +27,7 @@ class Liste extends Template
     private \Magento\Framework\Api\SearchCriteria $_searchCriteria;
 
       public function __construct(CollectionFactory $customerCollectionFactory,
-                                \Papeo\Formation2\Model\ResourceModel\Cadeau\CollectionFactory $cadeauCollectionFactory,
+                                \Papeo\Formation2\Model\ResourceModel\Ventes\CollectionFactory $ventesCollectionFactory,
                                 \Magento\Framework\Api\SearchCriteria $searchCriteria,
                                 OrderRepository $orderRepository,
 
@@ -35,7 +35,7 @@ class Liste extends Template
     {
 
         $this->_customerCollectionFactory = $customerCollectionFactory;
-        $this->_cadeauCollectionFactory = $cadeauCollectionFactory;
+        $this->_ventesCollectionFactory = $ventesCollectionFactory;
         $this->_orderRepository = $orderRepository;
         $this->_searchCriteria = $searchCriteria;
         parent::__construct($context, $data);
@@ -65,9 +65,9 @@ class Liste extends Template
     }
 
 
-    public function getMesCadeaux() {
+    public function getMesVentes() {
 
-        return $this->_cadeauCollectionFactory->create();
+        return $this->_ventesCollectionFactory->create();
 
 
     }

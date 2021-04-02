@@ -1,8 +1,11 @@
 {
-    "papeo_formation_revendeur": {
+    "papeo_fournisseur": {
         "column": {
-            "revendeur_id": true,
-            "Nom": true
+            "fournisseur_id": true,
+            "code fournisseur": true,
+            "libelle fournisseur": true,
+            "url": true,
+            "classe de lecture": true
         },
         "constraint": {
             "PRIMARY": true

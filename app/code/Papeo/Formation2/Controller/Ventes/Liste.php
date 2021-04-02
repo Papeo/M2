@@ -13,7 +13,7 @@ use Magento\Framework\App\Response\RedirectInterface;
 use Magento\Framework\App\ResponseInterface;
 
 
-class VentesListe extends Action
+class Liste extends Action
 {
 
     /**
@@ -36,7 +36,6 @@ class VentesListe extends Action
 
     public function execute() {
 
-        exit("toto");
 
              $ventes= $this->_ventesFactory->create();
 

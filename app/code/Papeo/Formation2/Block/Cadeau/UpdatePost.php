@@ -10,7 +10,7 @@ use Magento\Customer\Model\ResourceModel\Customer\CollectionFactory;
 use Papeo\Formation2\Model\ResourceModel\Cadeau;
 use Magento\Sales\Model\OrderRepository;
 
-class Update extends Template
+class UpdatePost extends Template
 {
     /**
      * @var CollectionFactory
@@ -45,14 +45,8 @@ class Update extends Template
 
     public function getMesClients()
     {
-        // $searchCriteria = $this->_searchCriteria;
-        // ancienne méthode
-        // $mesClients = $this->_customer->getCollection();
 
         $mesClients = $this->_customerCollectionFactory->create();
-        // ancienne méthode
-        //return $mesClients->getItems();
-        //nouvelle méthode
         return $mesClients;
 
     }

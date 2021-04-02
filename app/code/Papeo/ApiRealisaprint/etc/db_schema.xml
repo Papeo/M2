@@ -7,15 +7,41 @@
 -->
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
-    <table name="papeo_formation_revendeur" resource="default" engine="innodb" comment="Table Formation Revendeur">
+    <table name="sales_order" resource="sales" engine="innodb" comment="Sales Flat Order">
+
+        <column xsi:type="int" name="id_fournisseur" unsigned="true" nullable="true" identity="false"
+                comment="ID Fournisseur"/>
+        <column xsi:type="varchar" name="numero_commande_fournisseur" nullable="true" length="255" comment="Numero de commande fournisseur"/>
+        <column xsi:type="varchar" name="url_transporteur" nullable="true" length="255" comment="Url transporteur"/>
+
+    </table>
+    <table name="sales_order_item" resource="sales" engine="innodb" comment="Sales Flat Order Item">
+
+        <column xsi:type="int" name="id_fournisseur" unsigned="true" nullable="true" identity="false"
+                comment="ID Fournisseur"/>
+        <column xsi:type="varchar" name="numero_commande_fournisseur" nullable="true" length="255" comment="Numero de commande fournisseur"/>
+        <column xsi:type="varchar" name="url_transporteur" nullable="true" length="255" comment="Url transporteur"/>
+
+    </table>
+
+    <table name="papeo_fournisseur" resource="default" engine="innodb" comment="Table API Fournisseur">
         <column xsi:type="smallint" name="revendeur_id" unsigned="false" nullable="false" identity="true"
                 comment="Entity ID"/>
-        <column xsi:type="varchar" name="Nom" nullable="false" length="255" comment="Block Title"/>
+        <column xsi:type="varchar" name="code_fournisseur"  nullable="false"
+                comment="Code Fournisseur"/>
+        <column xsi:type="varchar" name="libelle_fournisseur" nullable="false" length="255" comment="Libellé fournisseur"/>
+        <column xsi:type="varchar" name="classe_de_lecture" nullable="false" length="255" comment="Classe de lecture"/>
 
         <constraint xsi:type="primary" referenceId="PRIMARY">
-            <column name="revendeur_id"/>
+        <column name="revendeur_id"/>
         </constraint>
     </table>
+
+
+
+
+
+
 
 
 </schema>

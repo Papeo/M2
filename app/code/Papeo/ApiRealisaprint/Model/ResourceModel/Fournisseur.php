@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Papeo\Formation\Model\ResourceModel;
+namespace Papeo\ApiRealisaprint\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
-class Revendeur extends AbstractDb {
+class Fournisseur extends AbstractDb {
 
     public function _construct()   {
         // permet de faire le lien ente les requetes SQL et la classe Objet Revendeur de Magento

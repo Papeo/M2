@@ -1,17 +1,17 @@
 <?php
 
 
-namespace Papeo\ApiRealisaprint\Model\ResourceModel\Fournisseur;
+namespace Papeo\ApiRealisaprint\Model\ResourceModel\Item;
 
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
-use Papeo\ApiRealisaprint\Model\Fournisseur;
+use Papeo\ApiRealisaprint\Model\Item;
 
 class Collection extends AbstractCollection
 {
     public function _construct()
     {
-        $this->_init(Fournisseur::class,\Papeo\ApiRealisaprint\Model\ResourceModel\Fournisseur::class);
+        $this->_init(Item::class,\Papeo\ApiRealisaprint\Model\ResourceModel\Item::class);
     }
 
 }

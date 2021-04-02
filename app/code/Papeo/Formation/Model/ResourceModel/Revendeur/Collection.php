@@ -14,4 +14,6 @@ class Collection extends AbstractCollection
         $this->_init(Revendeur::class,\Papeo\Formation\Model\ResourceModel\Cadeau::class);
     }
 
+
+
 }

@@ -13,7 +13,7 @@ use Papeo\Formation2\Model\CadeauRepository;
 use Magento\Customer\Model\ResourceModel\CustomerRepository;
 use Magento\Ui\Component\Listing\Columns\Column;
 
-class PaysColumn extends \Magento\Ui\Component\Listing\Columns\Column
+class DateColumn extends \Magento\Ui\Component\Listing\Columns\Column
 {
 
 
@@ -23,7 +23,7 @@ class PaysColumn extends \Magento\Ui\Component\Listing\Columns\Column
             foreach ($dataSource['data']['items'] as & $item) {
 
 
-                $item[$this->getData('name')] = $this->getCodePays($item);
+                $item[$this->getData('name')] = $this->formatDate($item);
 
 
             }
@@ -34,19 +34,20 @@ class PaysColumn extends \Magento\Ui\Component\Listing\Columns\Column
     }
 
 
-    private function getCodePays($item)
+    private function formatDate($item)
     {
-        $correspondances =[
-            'US' => 'France'
-        ];
 
-        if(isset($item["country_id"]) && isset($correspondances[$item["country_id"]])){
 
-            return $correspondances[$item["country_id"]];
+        $date = date_create($item['created_at']);
+        $date= date_format($date, 'd/m/Y');
+
+
+           // return $item["created_at"];
+            return $date;
         }
-        else {
-            return "NC";
-        }
-    }
+      //  else {
+         //   return "NC";
+      //  }
+  //  }
 
 }

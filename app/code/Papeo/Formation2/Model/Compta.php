@@ -8,7 +8,7 @@ use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Model\ResourceModel\AbstractResource;
 
 // Abstract permet d'acceder aux méthodes save, create
-class Ventes extends AbstractModel
+class Compta extends AbstractModel
 {
 
     /**
@@ -19,7 +19,7 @@ class Ventes extends AbstractModel
     public function _construct()
     {
 
-        $this->_init(\Papeo\Formation2\Model\ResourceModel\Ventes::class);
+        $this->_init(\Papeo\Formation2\Model\ResourceModel\Compta::class);
     }
 
     public function __construct(\Magento\Framework\Model\Context $context,

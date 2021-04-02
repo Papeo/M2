@@ -1,5 +1,5 @@
 <?php
-namespace Maxime\Helloworld\Block;
-class Hello extends \Magento\Framework\View\Element\Template
+namespace Papeo\ApiRealisaprint\Block;
+class ApiRealisaprint extends \Magento\Framework\View\Element\Template
 {
 }

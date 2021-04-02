@@ -13,7 +13,7 @@ use Papeo\Formation2\Model\CadeauRepository;
 use Magento\Customer\Model\ResourceModel\CustomerRepository;
 use Magento\Ui\Component\Listing\Columns\Column;
 
-class PaysColumn extends \Magento\Ui\Component\Listing\Columns\Column
+class TxTva extends \Magento\Ui\Component\Listing\Columns\Column
 {
 
 
@@ -23,7 +23,7 @@ class PaysColumn extends \Magento\Ui\Component\Listing\Columns\Column
             foreach ($dataSource['data']['items'] as & $item) {
 
 
-                $item[$this->getData('name')] = $this->getCodePays($item);
+                $item[$this->getData('name')] = $this->getTauxTva($item);
 
 
             }
@@ -34,19 +34,20 @@ class PaysColumn extends \Magento\Ui\Component\Listing\Columns\Column
     }
 
 
-    private function getCodePays($item)
+    private function getTauxTva($item)
     {
         $correspondances =[
-            'US' => 'Etats-Unis',
-            'FR' => 'France'
+            '1' => '20%',
+            '2' => '5,5%',
+            '3' => '2,1%'
         ];
 
-        if(isset($item["country_id"]) && isset($correspondances[$item["country_id"]])){
+        if(isset($item["tax_id"]) && isset($correspondances[$item["tax_id"]])){
 
-            return $correspondances[$item["country_id"]];
+            return $correspondances[$item["tax_id"]];
         }
         else {
-            return "NC";
+            return "Export";
         }
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Papeo\Formation2\Controller\Adminhtml\Cadeau;
+namespace Papeo\Formation2\Controller\Adminhtml\Commandes;
 
 // Toute classe e controller Front Office doit hériter de la casllse ci-dessous
 //class Liste extends Magento\Framework\App\Action\Action

@@ -8,7 +8,7 @@ namespace Papeo\Formation2\Controller\Adminhtml\Ventes;
 
 
 
-class Ventes extends \Magento\Backend\App\Action
+class Liste extends \Magento\Backend\App\Action
 {
 
 

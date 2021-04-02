@@ -1,57 +1,32 @@
 <?php
 
-/**@var \Papeo\Formation2\Block\Cadeau\Liste $block */
+/**@var \Papeo\Formation2\Block\Ventes\Liste $block */
 
 $clients = $block->getMesClients();
 /**
  * @var \Magento\Customer\Model\Customer $client
  */
 
-/**
- * @var \Papeo\Formation2\Model\Cadeau $cadeau
- */
 
-?>
-<form method="post" action="http://www.papeo.org/papeoformation2/cadeau/AddCadeau/">
-    <input type="text" name="nom_cadeau" id="nom_cadeau">
-    <select name="customer_id" id="customer_id">
-        <?php
-        echo "<option value=>--Choisissez un client--</option>";
-        foreach ($clients as $client) {
-            echo "<option value='" . $client->getId() . "'>" . $client->getName() . "</option>";
-        }
-        ?>
-    </select>
-    <br>
-    <p><input type="submit" value="Envoyer"/></p>
-</form>
-<?php
-$cadeaux = $block->getMesCadeaux();
+$listeVentes = $block->getMesCommandes();
 
+//
+echo "<br> Il y a " . count($listeVentes) . " cadeau(x)";
 
-echo "<br> Il y a " . count($cadeaux) . " cadeau(x)";
-
+echo "<br>Dont voici les noms : <br>";
 //echo "autrement->". $cadeaux->count();
-foreach ($cadeaux as $cadeau) {
+foreach ($listeVentes as $listeVente) {
 
     echo "<li>";
-    //echo count($revendeurs,COUNT_RECURSIVE);
-    echo "le cadeau " . $cadeau->getNom() . " sera envoyé à  " . $cadeau->getCustomer()->getFirstname()." ".$cadeau->getCustomer()->getLastname()  . " ";
-    $urlDelete = $block->getUrl("*/*/delete", ["id" => $cadeau->getId()]);
-    echo "<a href='" . $urlDelete . "'><img src='/pub/media/images/delete.png' width='15' height='15'></a>";
 
-    $urlEdit = $block->getUrl("*/*/edit", ["id" => $cadeau->getId()]);
-    echo " | <a href='" . $urlEdit . "'><img src='/pub/media/images/pencil-icon.jpg' width='18' height='18'></a>";
+    echo $listeVente->getCustomerLastname()." ".$listeVente->getCustomerFirstname();
 
-    //$urlDelete = $block->getUrl("*/*/delete",["id"=>$revendeur->getId()]);
-    //echo "<a href='".$urlDelete."'>Supprimer</a>";
-    //dd
+
 
     echo "</li>";
 }
 
 
 ?>
-
 
 

@@ -13,7 +13,7 @@ use Papeo\Formation2\Model\CadeauRepository;
 use Magento\Customer\Model\ResourceModel\CustomerRepository;
 use Magento\Ui\Component\Listing\Columns\Column;
 
-class NomDuClientColumn extends \Magento\Ui\Component\Listing\Columns\Column
+class statsVentes extends \Magento\Ui\Component\Listing\Columns\Column
 {
 
     /**
@@ -41,7 +41,7 @@ class NomDuClientColumn extends \Magento\Ui\Component\Listing\Columns\Column
                                 CustomerRepository $customerRepository,
                                 SearchCriteriaBuilder $searchCriteriaBuilder, OrderRepository $orderRepository, SearchCriteria $searchCriteria,
                                 ContextInterface $context, UiComponentFactory $uiComponentFactory,
-        \Magento\Sales\Model\ResourceModel\Order\CollectionFactory  $orderCollectionFactory, array $components = [], array $data = []
+                                \Magento\Sales\Model\ResourceModel\Order\CollectionFactory  $orderCollectionFactory, array $components = [], array $data = []
 
     )
     {
@@ -61,10 +61,10 @@ class NomDuClientColumn extends \Magento\Ui\Component\Listing\Columns\Column
             foreach ($dataSource['data']['items'] as & $item) {
 
 
-                 $customer = $this->_customerRepository->getById($item["customer_id"]);
+                $customer = $this->_customerRepository->getById($item["customer_id"]);
 
 
-              //  $item[$this->getData('name')] = $customer->getFirstname();
+                //  $item[$this->getData('name')] = $customer->getFirstname();
                 $item['email'] = $customer->getEmail();
                 $item['name'] = $customer->getFirstname();
 
@@ -78,9 +78,13 @@ class NomDuClientColumn extends \Magento\Ui\Component\Listing\Columns\Column
                 $ca = $this->_orderRepository->get($item['customer_id']);
                 $item['ca']  =$total->getItems($item['customer_id']);
 
+                $array = [];
 
-
-
+                if (array_key_exists($item['customer_id'],  $array) == true)
+                    $array[$item['customer_id']] += $item['ca'];
+                else
+                    $array[$item['customer_id']] = $item['ca'];
+//print_r($array);
                 //$ca = $this->_orderRepository->getList('$item["customer_id"]');
                 //$item['ca'] = $ca->getTotalCount();
 

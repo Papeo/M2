@@ -1,40 +1,15 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Papeo_Formation2::general"
-             title="Papeo"
-             translate="title"
-             module="Papeo_Formation2"
-             sortOrder="50"
-             resource="Papeo_Formation2::acces_liste_cadeau"/>
 
-        <add id="Papeo_Formation2::liste_cadeau"
-             title="Liste des cadeaux"
+        <add id="Papeo_ApiRealisaprint::apirealisaprint"
+             title="apirealisaprint"
              translate="title"
-             module="Papeo_Formation2"
+             module="Papeo_ApiRealisaprint"
              sortOrder="50"
              parent="Papeo_Formation2::general"
-             action="papeoformation2/cadeau/liste"
-             resource="Papeo_Formation2::acces_liste_cadeau"/>
+             action="apirealisaprint/commande"
+             resource="Papeo_ApiRealisaprint::apirealisaprint"/>
 
-        <add id="Papeo_Formation2::liste_commandes"
-             title="Liste des commandes"
-             translate="title"
-             module="Papeo_Formation2"
-             sortOrder="50"
-             parent="Papeo_Formation2::general"
-             action="papeoformation2/commandes/liste"
-             resource="Papeo_Formation2::acces_liste_commandes"/>
-
-
-    <add id="Papeo_Formation2::liste_compta"
-         title="Compta"
-         translate="title"
-         module="Papeo_Formation2"
-         sortOrder="50"
-         parent="Papeo_Formation2::general"
-         action="papeoformation2/compta/liste"
-         resource="Papeo_Formation2::acces_liste_compta"/>
-
-</menu>
+    </menu>
 </config>

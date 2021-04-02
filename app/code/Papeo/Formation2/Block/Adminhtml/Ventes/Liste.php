@@ -10,7 +10,7 @@ use Magento\Customer\Model\ResourceModel\Customer\CollectionFactory;
 use Papeo\Formation2\Model\ResourceModel\Cadeau;
 use Magento\Sales\Model\OrderRepository;
 
-class ListeVentes extends Template
+class Liste extends Template
 {
     /**
      * @var CollectionFactory

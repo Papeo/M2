@@ -13,7 +13,7 @@ use Papeo\Formation2\Model\CadeauRepository;
 use Magento\Customer\Model\ResourceModel\CustomerRepository;
 use Magento\Ui\Component\Listing\Columns\Column;
 
-class ComptaColumn extends \Magento\Ui\Component\Listing\Columns\Column
+class PaysColumn extends \Magento\Ui\Component\Listing\Columns\Column
 {
 
 
@@ -23,7 +23,7 @@ class ComptaColumn extends \Magento\Ui\Component\Listing\Columns\Column
             foreach ($dataSource['data']['items'] as & $item) {
 
 
-                $item[$this->getData('name')] = $this->getCodeCompta($item);
+                $item[$this->getData('name')] = $this->getCodePays($item);
 
 
             }
@@ -34,15 +34,16 @@ class ComptaColumn extends \Magento\Ui\Component\Listing\Columns\Column
     }
 
 
-    private function getCodeCompta($item)
+    private function getCodePays($item)
     {
         $correspondances =[
-            'checkmo' => '411200'
+            'US' => 'Etats-Unis',
+            'FR' => 'France'
         ];
 
-        if(isset($item["payment_method"]) && isset($correspondances[$item["payment_method"]])){
+        if(isset($item["country_id"]) && isset($correspondances[$item["country_id"]])){
 
-            return $correspondances[$item["payment_method"]];
+            return $correspondances[$item["country_id"]];
         }
         else {
             return "NC";

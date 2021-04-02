@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Papeo\Formation2\Model\ResourceModel\Ventes
+namespace Papeo\Formation2\Model\ResourceModel\Compta
 ;
 
 
@@ -12,7 +12,7 @@ class Collection extends AbstractCollection
 {
     public function _construct()
     {
-        $this->_init(Ventes::class,\Papeo\Formation2\Model\ResourceModel\Ventes::class);
+        $this->_init(Ventes::class,\Papeo\Formation2\Model\ResourceModel\Compta::class);
     }
 
 }
