@@ -13,7 +13,7 @@ use Magento\Customer\Model\ResourceModel\CustomerRepository;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 
 
-class InsererCategorieClientDrop implements DataPatchInterface
+class InsererCategorieClientDrop2 implements DataPatchInterface
 {
     /**
      * @var ModuleDataSetupInterface
@@ -91,15 +91,16 @@ class InsererCategorieClientDrop implements DataPatchInterface
         //je souhaite assigner la valeur 3 à tous les clients
 
         $customers = $this->_customerRepository->getList($this->_searchCriteriaBuilder->create());
-        foreach ($customers as $customer) {
-            echo $customer;
+        foreach ($customers->getItems() as $customer) {
+            var_dump($customer->getData());
+            exit;
             //calcul CA
             $customer->setData("custom_dropdown",3);
             $customer->save();
 
     }
 
-
+// sauvegardé
 
     }
 
