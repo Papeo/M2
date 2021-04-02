@@ -1,0 +1,27 @@
+<style>
+    textarea {
+        white-space: normal;
+        text-align: justify;
+        -moz-text-align-last: center; /* Firefox 12+ */
+        text-align-last: center;
+    }
+</style>
+
+<h1>Formulaire d'affichage des prix</h1>
+
+<form action="json.php" name="calculPrix" method="post">
+    <label>Saisissez les quantités</label>
+    <textarea id="textarea" cols="10" rows ="20" name="quantite">100
+        200
+        300
+     </textarea>
+    <label>Saisissez la liste des colonnes</label>
+    <textarea id="colonne" cols="10" rows ="20" name="colonne">
+
+     </textarea>
+
+    <input type="submit" value="textarea" class="submitButton">
+
+
+
+</form>

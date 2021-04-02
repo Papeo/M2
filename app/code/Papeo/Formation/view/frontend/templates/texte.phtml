@@ -1,0 +1,87 @@
+<?php
+
+/**@var \Papeo\Formation\Block\Revendeur\Liste $block */
+//echo $block->afficheMonTexte()."<br/>";
+
+$produit = $block->getMonProduit("WSH07");
+
+$client = $block->getMesCommandes();
+$categorie = $block->getMesCategories();
+
+
+//$commande = $block->getMesCommandes(, 2);
+//echo $commande;
+echo "<ul>";
+
+echo "<br><b><h1>Voici la liste des produits</h1></b><br>";
+$produits = $block->getMesProduits();
+foreach ($produits as $produit) {
+    echo "<li>";
+    echo $produit->getName();
+    echo " au prix de " . number_format($produit->getPrice(), 2) . " €";
+    echo "</li>";
+}
+
+echo "<br><b><h1>Nous avons trouvé " . count($block->getMesCommandes()) . " commande(s) correspondant à vos critères</h1></b><br>";
+$commandes = $block->getMesCommandes();
+foreach ($commandes as $commande) {
+    echo "<li>";
+    echo "Le client " . $commande->getCustomerFirstname() . " " . $commande->getCustomerLastname() . " a commandé " . count($commande->getItems()) . " article(s), le " . $commande->getCreatedAt() . " pour un montant de " . round($commande->getBaseGrandTotal(), 3) . " € <br> dont voici le détail : ";
+
+    foreach ($commande->getItems() as $detailCommande) {
+        echo "<ul>";
+        echo $detailCommande->getName();
+        echo "</ul>";
+
+    }
+    echo "</li>";
+}
+
+echo "<br><b><h1>Voici la liste des toutes les categories</h1></b><br>";
+$categories = $block->getMesCategories();
+foreach ($categories as $categorie) {
+    echo "<li>";
+    echo $categorie->getName();
+    echo "</li>";
+}
+
+echo "<h1>Voici la liste des clients</h1>";
+$clients = $block->getMesClients();
+/**
+ * @var \Magento\Customer\Model\Customer $client
+ */
+foreach ($clients as $client) {
+    echo "<li>";
+    echo $client->getName();
+
+
+    //echo $commande->getBaseGrandTotal();
+    echo "</li>";
+}
+
+// Appelez liste revendeurs
+echo "<h1>Voici la diste des revendeurs</h1>";
+
+$revendeurs = $block->getMesRevendeurs();
+
+/**
+* @var \Papeo\Formation\Model\Revendeur $revendeur
+ */
+
+echo "<br> Il y a ". count($revendeurs) ." revendeur(s)";
+echo "autrement->". $revendeurs->count();
+foreach ($revendeurs as $revendeur) {
+
+    echo "<li>";
+    //echo count($revendeurs,COUNT_RECURSIVE);
+    echo "le nom du revendeur est ". $revendeur->getData("Nom"). $revendeur->getId();
+    $urlDelete = $block->getUrl("*/*/delete",["id"=>$revendeur->getId()]);
+    echo "<a href='".$urlDelete."'>Supprimer</a>";
+   //dd
+
+    echo "</li>";
+}
+
+
+
+

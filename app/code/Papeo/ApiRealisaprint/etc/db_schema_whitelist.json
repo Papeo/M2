@@ -1,0 +1,11 @@
+{
+    "papeo_formation_revendeur": {
+        "column": {
+            "revendeur_id": true,
+            "Nom": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

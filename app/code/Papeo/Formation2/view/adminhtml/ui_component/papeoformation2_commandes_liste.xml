@@ -1,0 +1,130 @@
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <!-- Integration -->
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <!-- Definition de la source de données (=datasource) -->
+            <!-- Le datasource se nomme : nomdufichierxml.nomdatasource -->
+            <item name="provider" xsi:type="string">papeoformation2_cadeau_liste.papeoformation2_cadeau_liste_data_source</item>
+            <!-- Mettre dans l'arguments deps également le nom du datasource -->
+            <item name="deps" xsi:type="string">papeoformation2_cadeau_liste.papeoformation2_cadeau_liste_data_source</item>
+        </item>
+    </argument>
+
+    <settings>
+
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add New Cadeau</label>
+            </button>
+        </buttons>
+
+        <spinner>liste_cadeau_columns</spinner>
+    </settings>
+
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters"/>
+
+        <exportButton name="export_button">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">papeoformation2_cadeau_liste.papeoformation2_cadeau_liste.liste_cadeau_columns.ids</item>
+                </item>
+            </argument>
+        </exportButton>
+    </listingToolbar>
+
+
+
+
+    <!-- Data source -->
+    <dataSource name="papeoformation2_cadeau_liste_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument> <!-- Data provider class -->
+            <argument name="email" xsi:type="string">papeoformation2_cadeau_liste_data_source</argument> <!-- provider defined above -->
+            <argument name="name" xsi:type="string">papeoformation2_cadeau_liste_data_source</argument> <!-- provider defined above -->
+            <argument name="ca_client" xsi:type="string">papeoformation2_cadeau_liste_data_source</argument> <!-- provider defined above -->
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument> <!-- Primary key -->
+            <argument name="requestFieldName" xsi:type="string">id</argument> <!-- URL name parameter -->
+
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <!-- Primary key column name -->
+                        <item name="indexField" xsi:type="string">entity_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+
+    <columns name="liste_cadeau_columns">
+
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>cadeau_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>55</resizeDefaultWidth>
+            </settings>
+        </selectionsColumn>
+
+        <column name="nom_cadeau" >
+            <settings>
+                <label>Cadeau</label>
+                <filter>text</filter>
+            </settings>
+        </column>
+
+        <column name="name" class="Papeo\Formation2\Ui\Component\Listing\Columns\NomDuClientColumn">
+            <settings>
+                <label>Nom du client</label>
+            </settings>
+        </column>
+
+        <column name="email" class="Papeo\Formation2\Ui\Component\Listing\Columns\NomDuClientColumn">
+            <settings>
+                <label>email</label>
+            </settings>
+        </column>
+        <column name="total" class="Papeo\Formation2\Ui\Component\Listing\Columns\NomDuClientColumn">
+            <settings>
+                <label>total</label>
+            </settings>
+        </column>
+
+        <column name="total_orders" class="Papeo\Formation2\Ui\Component\Listing\Columns\NomDuClientColumn" sortOrder="90">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Total Orders</label>
+                <sortable>false</sortable>
+                <filter>false</filter>
+            </settings>
+        </column>
+        <column name="ca" class="Papeo\Formation2\Ui\Component\Listing\Columns\NomDuClientColumn" sortOrder="90">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Total Orders</label>
+                <sortable>false</sortable>
+                <filter>false</filter>
+            </settings>
+        </column>
+
+
+
+
+
+
+
+
+
+    </columns>
+</listing>

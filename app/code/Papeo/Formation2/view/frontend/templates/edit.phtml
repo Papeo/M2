@@ -1,0 +1,47 @@
+<?php
+
+/**@var \Papeo\Formation2\Block\Cadeau\Liste $block */
+
+$clients = $block->getMesClients();
+/**
+ * @var \Magento\Customer\Model\Customer $client
+ */
+
+/**
+ * @var \Papeo\Formation2\Model\Cadeau $cadeau
+ */
+
+$cadeaux = $block->getMesCadeaux();
+echo "<br> Il y a " . count($cadeaux) . " cadeau(x)";
+
+// 1. GET request : Get booking data
+$id = $this->getRequest()->getParam("id", false);
+$nom_client = $this->getRequest()->getParam("nom_client", false);
+$nom_cadeau = $this->getRequest()->getParam("nom_cadeau", false);
+?>
+
+<form method="post" action="http://www.papeo.org/papeoformation2/cadeau/UpdatePost/">
+    <input type="text" name="nom_cadeau" id="nom_cadeau" value="<?php echo $nom_cadeau; ?>">
+    <select name="nom_client" id="nom_client">
+        <?php
+        echo "<option selected>".$nom_client."</option>";
+        foreach ($clients as $client) {
+            echo "<option value='" . $client->getName() . "'>" . $client->getName()."</option>";
+        }
+        ?>
+    </select>
+    <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
+    <br>
+    <p><input type="submit" value="Mettre à jour"/></p>
+</form>
+<?php
+
+//print_r( $cadeaux->getData("nom_client"));
+
+//echo $cadeau->getData("nom_client");
+
+
+
+
+
+

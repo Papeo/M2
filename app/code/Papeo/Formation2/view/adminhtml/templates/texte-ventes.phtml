@@ -1,0 +1,57 @@
+<?php
+
+/**@var \Papeo\Formation2\Block\Cadeau\Liste $block */
+
+$clients = $block->getMesClients();
+/**
+ * @var \Magento\Customer\Model\Customer $client
+ */
+
+/**
+ * @var \Papeo\Formation2\Model\Cadeau $cadeau
+ */
+
+?>
+<form method="post" action="<?php echo $block->getUrl("*/*/AddCadeau"); ?>">
+    <input type="text" name="nom_cadeau" id="nom_cadeau">
+    <select name="customer_id" id="customer_id">
+        <?php
+        echo "<option value=>--Choisissez un client--</option>";
+        foreach ($clients as $client) {
+            echo "<option value='" . $client->getId() . "'>" . $client->getName() . "</option>";
+        }
+        ?>
+    </select>
+    <br>
+    <p><input type="submit" value="Envoyer"/></p>
+</form>
+<?php
+$cadeaux = $block->getMesCadeaux();
+
+
+echo "<br> Il y a " . count($cadeaux) . " cadeau(x)";
+
+//echo "autrement->". $cadeaux->count();
+foreach ($cadeaux as $cadeau) {
+
+    echo "<li>";
+    //echo count($revendeurs,COUNT_RECURSIVE);
+    echo "le cadeau " . $cadeau->getNom() . " sera envoyé à  " . $cadeau->getCustomer()->getFirstname()." ".$cadeau->getCustomer()->getLastname()  . " ";
+    $urlDelete = $block->getUrl("*/*/delete", ["id" => $cadeau->getId()]);
+    echo "<a href='" . $urlDelete . "'><img src='/pub/media/images/delete.png' width='15' height='15'></a>";
+
+    $urlEdit = $block->getUrl("*/*/edit", ["id" => $cadeau->getId()]);
+    echo " | <a href='" . $urlEdit . "'><img src='/pub/media/images/pencil-icon.jpg' width='18' height='18'></a>";
+
+    //$urlDelete = $block->getUrl("*/*/delete",["id"=>$revendeur->getId()]);
+    //echo "<a href='".$urlDelete."'>Supprimer</a>";
+    //dd
+
+    echo "</li>";
+}
+
+
+?>
+
+
+

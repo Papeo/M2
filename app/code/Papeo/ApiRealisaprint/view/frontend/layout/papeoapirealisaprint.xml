@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Voici la liste des cadeaux de fin d'année</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <!-- c'est la qu'on détermine le chemin de la classe -->
+            <block class="Papeo\Formation2\Block\Cadeau\Liste" name="texte" template="Papeo_Formation2::texte.phtml" cacheable="false">
+            </block>
+            </referenceContainer>
+    </body>
+</page>

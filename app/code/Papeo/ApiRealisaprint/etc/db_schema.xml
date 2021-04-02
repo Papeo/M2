@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="papeo_formation_revendeur" resource="default" engine="innodb" comment="Table Formation Revendeur">
+        <column xsi:type="smallint" name="revendeur_id" unsigned="false" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="varchar" name="Nom" nullable="false" length="255" comment="Block Title"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="revendeur_id"/>
+        </constraint>
+    </table>
+
+
+</schema>
