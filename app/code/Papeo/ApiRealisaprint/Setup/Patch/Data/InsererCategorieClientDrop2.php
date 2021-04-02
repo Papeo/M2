@@ -99,7 +99,7 @@ class InsererCategorieClientDrop2 implements DataPatchInterface
             $customer->save();
 
     }
-echo"hello";
+        echo"hello";
 // sauvegardé2
 
     }
