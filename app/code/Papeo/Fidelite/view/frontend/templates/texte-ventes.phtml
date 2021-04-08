@@ -1,0 +1,22 @@
+<?php
+
+/**@var \Papeo\Fidelite\Block\Ventes\Liste $block */
+
+$clients = $block->getMesClients();
+
+/**
+ * @var \Magento\Customer\Model\Customer $client
+ */
+
+$listeVentes = $block->getMesCommandes();
+echo "<br> Il y a " . count($listeVentes) . " cadeau(x)";
+echo "<br>Dont voici les noms : <br>";
+//echo "autrement->". $cadeaux->count();
+foreach ($listeVentes as $listeVente) {
+    echo "<li>";
+    echo $listeVente->getCustomerLastname() . " " . $listeVente->getCustomerFirstname() . " " . $listeVente->getBaseGrandTotal() . "k";
+    echo "</li>";
+}
+?>
+
+

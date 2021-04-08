@@ -11,15 +11,15 @@ $clients = $block->getMesClients();
 $listeVentes = $block->getMesCommandes();
 
 //
-echo "<br> Il y a " . count($listeVentes) . " cadeau(x)";
+echo "<br> Il y a " . count($listeVentes);
 
 echo "<br>Dont voici les noms : <br>";
-//echo "autrement->". $cadeaux->count();
+
 foreach ($listeVentes as $listeVente) {
 
     echo "<li>";
 
-    echo $listeVente->getCustomerLastname()." ".$listeVente->getCustomerFirstname();
+    echo $listeVente->getCustomerLastname()." ".$listeVente->getCustomerFirstname()." ". $listeVente->getBaseGrandTotal()."k";
 
 
 

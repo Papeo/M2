@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Papeo\Formation2\Block\Ventes;
+namespace Papeo\Fidelite\Block\Ventes;
 
 
 
 use Magento\Framework\View\Element\Template;
 use Magento\Customer\Model\ResourceModel\Customer\CollectionFactory;
-use Papeo\Formation2\Model\ResourceModel\Ventes;
+use Papeo\Fidelite\Model\ResourceModel\Ventes;
 use Magento\Sales\Model\OrderRepository;
 
 class Liste extends Template
@@ -17,7 +17,7 @@ class Liste extends Template
      */
     private CollectionFactory $_customerCollectionFactory;
     /**
-     * @var \Papeo\Formation2\Model\ResourceModel\Ventes\CollectionFactory
+     * @var \Papeo\Fidelite\Model\ResourceModel\Ventes\CollectionFactory
      */
     private $_ventesCollectionFactory;
     /**
@@ -27,7 +27,7 @@ class Liste extends Template
     private \Magento\Framework\Api\SearchCriteria $_searchCriteria;
 
     public function __construct(CollectionFactory $customerCollectionFactory,
-                                \Papeo\Formation2\Model\ResourceModel\Ventes\CollectionFactory $ventesCollectionFactory,
+                                \Papeo\Fidelite\Model\ResourceModel\Ventes\CollectionFactory $ventesCollectionFactory,
                                 \Magento\Framework\Api\SearchCriteria $searchCriteria,
                                 OrderRepository $orderRepository,
 
