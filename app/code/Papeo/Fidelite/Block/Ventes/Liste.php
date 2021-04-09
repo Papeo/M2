@@ -49,7 +49,10 @@ class Liste extends Template
         // ancienne méthode
         // $mesClients = $this->_customer->getCollection();
 
-        $mesClients = $this->_customerCollectionFactory->create();
+        $customerId= 1;
+        $mesClients = $this->_customerCollectionFactory->create()
+            ->addFieldToSelect('customer_email')->setOrder('created_at','desc');
+
         // ancienne méthode
         //return $mesClients->getItems();
         //nouvelle méthode
@@ -58,11 +61,28 @@ class Liste extends Template
     }
 
     public function getMesCommandes() {
+        $customerEmail="frederic@lacombinaison.fr";
+        $total=0;
         $searchCriteria = $this->_searchCriteria;
-        $mesCommandes = $this->_orderRepository->getList($searchCriteria);
-
+        $mesCommandes = $this->_orderRepository->getList($searchCriteria)
+        ->addAttributeToFilter('customer_email', $customerEmail);
         return $mesCommandes->getItems();
     }
+//    public function getOrderCollectionByDate($from, $to)
+//    {
+//        $collection = $this->_orderCollectionFactory()->create($customerId)
+//            ->addFieldToSelect('*')
+//            ->addFieldToFilter('status',
+//                ['in' => $this->_orderConfig->getVisibleOnFrontStatuses()]
+//            )
+//            ->setOrder(
+//                'created_at',
+//                'desc'
+//            );
+//
+//        return $collection;
+//
+//    }
 
 
     public function getMesVentes() {

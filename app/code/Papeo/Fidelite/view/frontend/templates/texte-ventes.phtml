@@ -4,18 +4,32 @@
 
 $clients = $block->getMesClients();
 
+
 /**
  * @var \Magento\Customer\Model\Customer $client
  */
 
-$listeVentes = $block->getMesCommandes();
-echo "<br> Il y a " . count($listeVentes) . " cadeau(x)";
-echo "<br>Dont voici les noms : <br>";
-//echo "autrement->". $cadeaux->count();
-foreach ($listeVentes as $listeVente) {
-    echo "<li>";
-    echo $listeVente->getCustomerLastname() . " " . $listeVente->getCustomerFirstname() . " " . $listeVente->getBaseGrandTotal() . "k";
-    echo "</li>";
+$titi=0;
+echo "<br><b><h1>Nous avons trouvé " . count($block->getMesCommandes()) . " commande(s) correspondant à vos critères</h1></b><br>";
+$commandes = $block->getMesCommandes();
+foreach ($commandes as $commande) {
+echo "<li>";
+
+echo "Le client " . $commande->getCustomerFirstname() . " " . $commande->getCustomerLastname() . " a commandé " . count($commande->getItems()) . " article(s), le " . $commande->getCreatedAt() . " pour un montant de " . round($commande->getBaseGrandTotal(), 3) . " € <br> dont voici le détail : ";
+$customId = $commande->getCustomerId();
+
+
+if ($commande->getCustomerId()===$customId) {
+    $titi = $commande->getBaseGrandTotal()+$titi;
+    $toto = $commande->getTotalPaid();
+    echo "Le Cumul des commandes est de( ): <br>".$titi."lll<br>"."et ".$toto;
+}
+foreach ($commande->getItems() as $detailCommande) {
+    echo "<ul>";
+    echo $detailCommande->getName();
+    echo "</ul>";
+}
+
 }
 ?>
 
